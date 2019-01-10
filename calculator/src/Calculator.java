@@ -20,25 +20,25 @@ public class Calculator {
 
 	public static int addition(int num1, int num2) {
 		int sum = num1 + num2;
-		System.out.println("Addition Result:" + num1 +" + "+ num2 +" = "+ sum +"");
+		System.out.println("Addition Result:" + num1 + " + " + num2 + " = " + sum + "");
 		return sum;
 	}
 
 	public static int subtraction(int num1, int num2) {
 		int difference = num1 - num2;
-		System.out.println("Subtraction Result: "+ num1 +" - "+ num2 +" = "+ difference +"");
+		System.out.println("Subtraction Result: " + num1 + " - " + num2 + " = " + difference + "");
 		return difference;
 	}
 
 	public static int multiplication(int num1, int num2) {
 		int multiply = num1 * num2;
-		System.out.println("Multiplication Result: "+ num1 +" * "+ num2 +" = "+ multiply +"");
+		System.out.println("Multiplication Result: " + num1 + " * " + num2 + " = " + multiply + "");
 		return multiply;
 	}
 
 	public static int division(int num1, int num2) {
 		int divide = num1 / num2;
-		System.out.println("Division Result: "+ num1 +" / "+ num2 +" = "+ divide +"");
+		System.out.println("Division Result: " + num1 + " / " + num2 + " = " + divide + "");
 		return divide;
 	}
 }
