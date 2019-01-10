@@ -11,7 +11,6 @@ public class PigLatin {
 		String newWord = reader.nextLine(); // created variable newWord to save the users word to
 		String newWord2 = newWord.toLowerCase(); // change all letters to lower case for the word
 		change(newWord2); // function name for checking if it starts with a consonant
-
 		reader.close();
 
 	}
