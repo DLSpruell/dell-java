@@ -26,29 +26,29 @@ public class RockPaperScissors {
 		reader.close();
 	}
 
-		public static String winner(String playerHand, String computerHand) {
-			String winner = "";
-			
-			if ((playerHand.equals("rock")) && computerHand.equals("rock")) {
-				System.out.println("Game is a draw.");
-			} else if ((playerHand.equals("paper")) && computerHand.equals("paper")) {
-				System.out.println("Game is a draw.");
-			} else if ((playerHand.equals("scissors")) && computerHand.equals("scissors")) {
-				System.out.println("Game is a draw.");
-			} else if ((playerHand.equals("rock")) && computerHand.equals("paper")) {
-				System.out.println("Paper covers rock. Computer has won!");
-			} else if ((playerHand.equals("paper")) && computerHand.equals("rock")) {
-				System.out.println("Paper covers rock. You've won!");
-			} else if ((playerHand.equals("scissors")) && computerHand.equals("paper")) {
-				System.out.println("Scissors cuts paper. You've won!");
-			} else if ((playerHand.equals("paper")) && computerHand.equals("scissors")) {
-				System.out.println("Scissors cuts paper. Computer has won!");
-			} else if ((playerHand.equals("scissors")) && computerHand.equals("rock")) {
-				System.out.println("Rock breaks scissors. Computer has won!");
-			} else if ((playerHand.equals("rock")) && computerHand.equals("scissors")) {
-				System.out.println("Rock breaks scissors. You've won!");
-			}
-			return winner;
-		
+	public static String winner(String playerHand, String computerHand) {
+		String winner = "";
+
+		if ((playerHand.equals("rock")) && computerHand.equals("rock")) {
+			System.out.println("Game is a draw.");
+		} else if ((playerHand.equals("paper")) && computerHand.equals("paper")) {
+			System.out.println("Game is a draw.");
+		} else if ((playerHand.equals("scissors")) && computerHand.equals("scissors")) {
+			System.out.println("Game is a draw.");
+		} else if ((playerHand.equals("rock")) && computerHand.equals("paper")) {
+			System.out.println("Paper covers rock. Computer has won!");
+		} else if ((playerHand.equals("paper")) && computerHand.equals("rock")) {
+			System.out.println("Paper covers rock. You've won!");
+		} else if ((playerHand.equals("scissors")) && computerHand.equals("paper")) {
+			System.out.println("Scissors cuts paper. You've won!");
+		} else if ((playerHand.equals("paper")) && computerHand.equals("scissors")) {
+			System.out.println("Scissors cuts paper. Computer has won!");
+		} else if ((playerHand.equals("scissors")) && computerHand.equals("rock")) {
+			System.out.println("Rock breaks scissors. Computer has won!");
+		} else if ((playerHand.equals("rock")) && computerHand.equals("scissors")) {
+			System.out.println("Rock breaks scissors. You've won!");
+		}
+		return winner;
+
 	}
 }
