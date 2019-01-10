@@ -41,5 +41,4 @@ public class Calculator {
 		System.out.println("Division Result: "+ num1 +" / "+ num2 +" = "+ divide +"");
 		return divide;
 	}
-
 }
