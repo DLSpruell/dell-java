@@ -1,13 +1,13 @@
 
 public class ToDoItem {
-	//create variables
+	//create variables for this class
 		private int id;
 		private String description;
 		private boolean complete;
 		private static int NEXTID = 1;
 	
 		
-		//create constructor
+		//create constructor for this class
 		public ToDoItem(String description , boolean complete) {
 			
 			this.id = NEXTID++;
@@ -16,11 +16,11 @@ public class ToDoItem {
 		
 		}
 
-		//add getter and setter methods
+		//add getter and setter methods for each variable
 		public int getId() {
 			return id;
 		}
-
+		
 		public void setId(int id) {
 			this.id = id;
 		}
@@ -45,7 +45,9 @@ public class ToDoItem {
 			return NEXTID;
 		}
 
-		
+		public static void setNEXTID(int nEXTID) {
+			NEXTID = nEXTID;
+		}
 
 		
 }	

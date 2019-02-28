@@ -5,39 +5,40 @@ import java.util.Arrays;
 
 public class Controller {
 
-	// create variables
+	// create new variables for the class
 	DAO toDoItem;
 	Scanner reader = new Scanner(System.in);
 	List<String> methods;
-	
-	// create constructor
+
+	// create constructor for the class
 	public Controller() {
-		
+
 		this.toDoItem = new DAO();
-		this.methods = new ArrayList(Arrays.asList("add", "delete", "mark", "list", "quit", "help"));
+		this.methods = new ArrayList(Arrays.asList("add", "delete", "mark complete", "list", "quit", "help"));
 
 	}
 
+	// code for the main section to allow the controller to work
 	public static void main(String[] args) {
 
 		Controller myController = new Controller(); // instantiate a controller object
 		myController.start(); // call the objects start method
 	}
 
-	// code to run the program
+	// code that determines what the programs does while it runs
 	public void start() {
-		
-		printHelp();
+
+		printHelp(); // print the command for the user
 
 		boolean quit = false;
-		while (!quit) {
-			
+		while (!quit) { // run all of these commands until the user enters the quit command
+
 			System.out.println("Please enter a command: ");
 			String input = reader.nextLine();
 			String[] actionParts = input.split(" ");
-			String action = actionParts[0].trim();
+			String action = actionParts[0].trim(); // code to split the user's input and only focus on the first word
 
-			if(!methods.contains(action)) {
+			if (!methods.contains(action)) {// depending on what the user enters, run the following methods
 				System.out.println("Invalid Command. Please enter a command. Enter help if needed");
 				continue;
 			}
@@ -54,9 +55,9 @@ public class Controller {
 				processListAction(actionParts);
 
 			} else if (action.equals("mark")) {
-				
+
 				processCompleteAction(actionParts);
-				
+
 			} else if (action.equals("quit")) {
 
 				quit = true;
@@ -65,48 +66,51 @@ public class Controller {
 
 				printHelp();
 
-			
 			} else {
 
 				System.out.println("Invalid Input. Please enter help for list of commands.");
 			}
 		}
-		System.out.println("To-Do List App has ended");
+		System.out.println("Confirmed: To-Do List App has ended");
 		reader.close();
 	}
 
-	// The user requested that a given to-do list be deleted, this is the method
-	// sends the request to the to-do list
+	// code to process the user's delete request
 	public void processDeleteAction(String[] actionParts) {
 
 		if (actionParts.length > 1) {
-			System.out.println("Too many inputs to delete command");
+			System.out.println("Too many inputs to delete command");// code to check if the user enters too many words
 			return;
 		}
 		try {
-			System.out.println("Please enter the ID of the task to delete");
+			System.out.println("Please enter the ID of the task to delete");// code for user to enter the id of the
+																			// deleted task
 			int id = reader.nextInt();
-		
-			toDoItem.delete(toDoItem.get(id));
-			System.out.println("Entry deleted");
+
+			toDoItem.delete(toDoItem.get(id));// code to take the id given and perform the delete method
+			System.out.println("Confirmed: Entry deleted");
+			
 		} catch (Exception e) {
-			System.out.println("Invalid ID entered");
+			System.out.println("Invalid ID entered");// code to check if the user enters something other than whats
+														// asked
 		}
 	}
 
 	// method to process the users request to add an item to the list
 	public void processListAction(String[] actionParts) {
-		
-		
+
 		if (actionParts.length >= 3) {
-			System.out.println("Too many inputs to list command");
+			System.out.println("Too many inputs to list command");// if the user enters more than 3 or more words then
+																	// error will be returned
 			return;
 		}
 
 		if (actionParts.length == 1) {
-			System.out.println("Invalid Command. Please specify which items to list");
+			System.out.println("Invalid Command. Please specify which items to list");// if user enters too few words
+																						// then error will be returned
 
-		} else if (actionParts.length == 2) {
+		} else if (actionParts.length == 2) {// code to split up the list method into list only pending, list only
+												// complete or list all items
 			if (actionParts[1].equals("all")) {
 				printList(toDoItem.list("all"));
 				return;
@@ -117,88 +121,109 @@ public class Controller {
 				printList(toDoItem.list("complete"));
 				return;
 			}
-			System.out.println("Invalid Command. Enter Help for list of valid commands");
+			System.out.println("Invalid Command. Enter Help for list of valid commands.");
 
 		}
 	}
-	// method to mark an item as complete
+
+	// method to process the user's request to mark an item as complete
 	public void processCompleteAction(String[] actionParts) {
-		
+
 		if (actionParts.length > 2) {
-			System.out.println("Too many inputs to perform complete command");
+			System.out.println("Too many inputs to perform complete command");// code to check if the user enters more
+																				// than two words for input
 			return;
 		}
 		try {
-			if (actionParts.length == 2 && actionParts[0].equals("mark")) {
-				System.out.println("Please enter an ID: ");
+			if (actionParts.length == 2 && actionParts[0].equals("mark")) {// code to make sure user enters a two worded
+																			// request with the first word being mark.
+																			// To distinguish from other commands
+				System.out.println("Please enter an ID: ");// code to request the id of the task the user wants to mark
+															// as complete
 				int id = reader.nextInt();
-			//	int id = Integer.parseInt(newID);
-				toDoItem.markComplete(toDoItem.get(id));
-				System.out.println("Item Marked Complete");
+
+				toDoItem.markComplete(toDoItem.get(id));// based on the id given, perform the markComplete method on the
+														// item
+				System.out.println("Confirmed: Item Marked Complete");
 			} else {
 				System.out.println("Invalid Command");
 				return;
 			}
+		} catch (NullPointerException e) {// code to check for incorrect ID inputs
+			System.out.println("ID is incorrect");
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("ID is incorrect");
-		} catch (NullPointerException e) {
-			System.out.println("ID is incorrect");
 		}
-		}
-		
+	}
 
 	// method to complete request to process add function
 	public void processAddAction(String[] actionParts) {
 
 		if (actionParts.length > 1) {
-			System.out.println("Too many inputs for add command");
+			System.out.println("Too many inputs for add command");// code to throw error is the user enters too many
+																	// words
 			return;
 		}
 
-		System.out.println("Please enter a task description:");
+		System.out.println("Please enter a task description:");// code to request user to enter a task description
 		String description = reader.nextLine();
 
-		if (!description.isEmpty()) {
+		if (!description.isEmpty()) {// as long as the user entered something, the add method will run to add that
+										// item to the list
 			toDoItem.add(description, false);
-			System.out.println("Entry added");
+			System.out.println("Confirmed: Entry added");
 		} else {
 			System.out.println("Please enter a task description");
 			return;
 		}
 
 	}
-	
-	public void printHelp() {
-		
-	        System.out.println("List of valid commands: ");
-	        System.out.println(" add:    used to add an entry ");
-	        System.out.println(" mark complete:   used to update an item from pending to complete");
-	        System.out.println(" list pending:   used to list the pending entries ");
-	        System.out.println(" list complete:   used to list the completed entries");
-	        System.out.println(" list all:   used to list all entries");
-	        System.out.println(" delete:   used to delete an entry");
-	        System.out.println(" help:   used to print valid commands");
-	        System.out.println(" quit:   used to quit the app");
-	        System.out.println();
 
-	    }
-	
-	//method to create a table
-		public void printList(ArrayList<ToDoItem> entries){
-			
-			String status;
+	public void printHelp() {// code printed to show the user what commands are valid for this app
 
-			System.out.printf("%2s | %14s | %s%n", "ID", " Description ", "Status");
-			System.out.println("-----------------------------");
-			for (int i = 0; i < entries.size(); i++) {
+		System.out.println(" List of valid commands: ");
+		System.out.println(" [add]:             add an entry ");
+		System.out.println(" [mark complete]:   update an item from pending to complete");
+		System.out.println(" [list pending]:    list the pending entries ");
+		System.out.println(" [list complete]:   list the completed entries");
+		System.out.println(" [list all]:        list all entries");
+		System.out.println(" [delete]:          delete an entry");
+		System.out.println(" [help]:            print valid commands");
+		System.out.println(" [quit]:            quit the app");
+		System.out.println();
 
-				if (entries.get(i).getCompletedFlag() == true)
-					status = "Complete";
-				else
-					status = "Pending";
-
-				System.out.printf("%2s | %14s |  %s%n", entries.get(i).getId(), entries.get(i).getDescription(), status);
-			}
-		}
 	}
 
+	// method to create a table
+	public void printList(ArrayList<ToDoItem> entries) {// code to construct/format the table, as well as set the task
+														// status and each added task line
+
+		String status;
+
+		System.out.printf("%2s | %8s | %s%n", "ID", "Status", "Description");// format line that determines how the
+																				// header of the list will look
+		System.out.println("--------------------------------");
+		for (int i = 0; i < entries.size(); i++) {// for loop to cycle thru all items to set the status as either
+													// complete or pending
+
+			if (entries.get(i).getCompletedFlag() == true)// code to determine whether an item will show pending or
+															// completed, based on the flag set
+				status = "Complete";
+			else
+				status = "Pending";
+
+			System.out.printf("%2s | %8s | %s%n", entries.get(i).getId(), status, entries.get(i).getDescription());// code
+																													// to
+																													// determine
+																													// how
+																													// each
+																													// added
+																													// line
+																													// will
+																													// show
+																													// on
+																													// the
+																													// list
+		}
+	}
+}
