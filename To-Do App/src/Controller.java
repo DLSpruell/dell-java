@@ -14,7 +14,7 @@ public class Controller {
 	public Controller() {
 
 		this.toDoItem = new DAO();
-		this.methods = new ArrayList(Arrays.asList("add", "delete", "mark complete", "list", "quit", "help"));
+		this.methods = new ArrayList(Arrays.asList("add", "delete", "mark", "list", "quit", "help"));
 
 	}
 
@@ -89,7 +89,7 @@ public class Controller {
 
 			toDoItem.delete(toDoItem.get(id));// code to take the id given and perform the delete method
 			System.out.println("Confirmed: Entry deleted");
-			
+			System.out.println();
 		} catch (Exception e) {
 			System.out.println("Invalid ID entered");// code to check if the user enters something other than whats
 														// asked
@@ -145,14 +145,15 @@ public class Controller {
 				toDoItem.markComplete(toDoItem.get(id));// based on the id given, perform the markComplete method on the
 														// item
 				System.out.println("Confirmed: Item Marked Complete");
+				System.out.println();
 			} else {
 				System.out.println("Invalid Command");
-				return;
+		//		return;
 			}
-		} catch (NullPointerException e) {// code to check for incorrect ID inputs
-			System.out.println("ID is incorrect");
+		} catch (NullPointerException e) {// code to check for incorrect ID inputs or blanks
+			System.out.println("ID is incorrect. Please enter ID");
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("ID is incorrect");
+			System.out.println("ID is incorrect. Please enter ID");
 		}
 	}
 
@@ -172,6 +173,7 @@ public class Controller {
 										// item to the list
 			toDoItem.add(description, false);
 			System.out.println("Confirmed: Entry added");
+			System.out.println();
 		} else {
 			System.out.println("Please enter a task description");
 			return;
@@ -181,7 +183,7 @@ public class Controller {
 
 	public void printHelp() {// code printed to show the user what commands are valid for this app
 
-		System.out.println(" List of valid commands: ");
+		System.out.println(" List of valid commands (case sensitive): ");
 		System.out.println(" [add]:             add an entry ");
 		System.out.println(" [mark complete]:   update an item from pending to complete");
 		System.out.println(" [list pending]:    list the pending entries ");
@@ -212,18 +214,8 @@ public class Controller {
 			else
 				status = "Pending";
 
-			System.out.printf("%2s | %8s | %s%n", entries.get(i).getId(), status, entries.get(i).getDescription());// code
-																													// to
-																													// determine
-																													// how
-																													// each
-																													// added
-																													// line
-																													// will
-																													// show
-																													// on
-																													// the
-																													// list
+			System.out.printf("%2s | %8s | %s%n", entries.get(i).getId(), status, entries.get(i).getDescription());// code to determine how variables will show on the list
+																												
 		}
 	}
 }
