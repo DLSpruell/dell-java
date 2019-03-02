@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 
-
 public class DAO {
 
 	// create a new array list to hold all of the info
@@ -50,8 +49,6 @@ public class DAO {
 		return temp;
 	}
 
-	
-
 	// method to mark items as complete
 	public void markComplete(ToDoItem entry) {
 		
@@ -60,7 +57,7 @@ public class DAO {
 	}
 
 	public ToDoItem get(int id) {//code that allows the user to tell the app which item they want to manipulate based on the id given
-		for (int i = 0; i < listing.size(); i++) {
+		for (int i = 0; i < listing.size() ; i++) {
 			ToDoItem currEntry = listing.get(i);
 			if (currEntry.getId() == id) {
 				return currEntry;

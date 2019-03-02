@@ -1,6 +1,6 @@
 
 public class ToDoItem {
-	//create variables for this class
+		//create variables for this class
 		private int id;
 		private String description;
 		private boolean complete;
@@ -48,8 +48,6 @@ public class ToDoItem {
 		public static void setNEXTID(int nEXTID) {
 			NEXTID = nEXTID;
 		}
-
-		
 }	
 		 
 

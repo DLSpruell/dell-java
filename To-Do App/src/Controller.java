@@ -15,7 +15,6 @@ public class Controller {
 
 		this.toDoItem = new DAO();
 		this.methods = new ArrayList(Arrays.asList("add", "delete", "mark", "list", "quit", "help"));
-
 	}
 
 	// code for the main section to allow the controller to work
@@ -197,19 +196,19 @@ public class Controller {
 	}
 
 	// method to create a table
-	public void printList(ArrayList<ToDoItem> entries) {// code to construct/format the table, as well as set the task
-														// status and each added task line
+	public void printList(ArrayList<ToDoItem> entries) {// code to construct/format the table, as well as set the task status and each added task line
+														
 
 		String status;
 
-		System.out.printf("%2s | %8s | %s%n", "ID", "Status", "Description");// format line that determines how the
-																				// header of the list will look
+		System.out.printf("%2s | %8s | %s%n", "ID", "Status", "Description");// format line that determines how the header of the list will look
+																				
 		System.out.println("--------------------------------");
-		for (int i = 0; i < entries.size(); i++) {// for loop to cycle thru all items to set the status as either
-													// complete or pending
+		for (int i = 0; i < entries.size(); i++) {// for loop to cycle thru all items to set the status as either complete or pending
+													
 
-			if (entries.get(i).getCompletedFlag() == true)// code to determine whether an item will show pending or
-															// completed, based on the flag set
+			if (entries.get(i).getCompletedFlag() == true)// code to determine whether an item will show pending or completed, based on the flag set
+															
 				status = "Complete";
 			else
 				status = "Pending";
